@@ -88,9 +88,9 @@
     align-items: center;
     justify-content: center;
     font-size: 4rem;
-    transform: scale(0.1);
+    transform: scale(0);
     color: white;
-    transition: all 0.3s ease-in-out 0.3s;
+    transition: opacity 0.5s ease-in-out 0.3s;
 }
 
 .ColorBox .copy-message.show {
