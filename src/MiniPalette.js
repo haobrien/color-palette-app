@@ -1,5 +1,5 @@
 import React from 'react'
-import { withStyles, withTheme } from '@material-ui/styles'
+import { withStyles } from '@material-ui/styles'
 
 const styles = {
     root: {
@@ -34,10 +34,9 @@ const styles = {
         alignItems: 'center',
         margin: '0',
         paddingTop: '0.5rem',
-        color: 'white',
+        color: 'black',
         fontSize: '1rem',
         position: 'relative',
-        color: 'black'
     },
     emoji: {
         marginLeft: '0.5rem',
