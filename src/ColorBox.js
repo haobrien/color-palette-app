@@ -12,15 +12,15 @@ export default class ColorBox extends Component {
         this.changeCopyState = this.changeCopyState.bind(this)
     }
 
-    changeCopyState(){
-        this.setState({copied: true}, () => {
-            setTimeout(() => this.setState({copied: false}), 1500)
+    changeCopyState() {
+        this.setState({ copied: true }, () => {
+            setTimeout(() => this.setState({ copied: false }), 1500)
         })
     }
 
     render() {
-        const { background, name, id, paletteId } = this.props
-        const {copied} = this.state
+        const { background, name, id, paletteId, showMore } = this.props
+        const { copied } = this.state
         return (
             <CopyToClipboard text={background} onCopy={this.changeCopyState}>
                 <div style={{ background: background }} className="ColorBox">
@@ -35,9 +35,11 @@ export default class ColorBox extends Component {
                         </div>
                         <button className="copy-button">Copy</button>
                     </div>
-                    <Link to={`/palette/${paletteId}/${id}`} onClick={evt => evt.stopPropagation()}>
-                        <span className="see-more">More</span>
-                    </Link>
+                    {showMore && (
+                        <Link to={`/palette/${paletteId}/${id}`} onClick={evt => evt.stopPropagation()}>
+                            <span className="see-more">More</span>
+                        </Link>
+                    )}
                 </div>
             </CopyToClipboard>
         )
