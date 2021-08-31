@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { IconButton, MenuItem } from '@material-ui/core'
 import { Snackbar } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
-import './Navbar.css'
+import './styles/Navbar.css'
 
 export default class Navbar extends Component {
     constructor(props) {

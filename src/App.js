@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 import { Route, Switch } from 'react-router-dom';
 import { generatePalette } from './colorHelpers';
 import Palette from './Palette';

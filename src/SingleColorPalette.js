@@ -38,8 +38,6 @@ export default class SingleColorPalette extends Component {
         return (
             <div className="Palette SingleColorPalette">
                 <Navbar
-                    // changeLevel={this.changeLevel}
-                    // level={level}
                     showSlider={false}
                     changeFormat={this.changeFormat} />
                 <div className="Palette-colors">

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ColorBox from './ColorBox'
 import Navbar from './Navbar'
 import 'rc-slider/assets/index.css'
-import './Palette.css'
+import './styles/Palette.css'
 import Footer from './Footer'
 
 export default class Palette extends Component {
