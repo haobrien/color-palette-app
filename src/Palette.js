@@ -35,7 +35,7 @@ export default class Palette extends Component {
                 key={color.id}
                 id={color.id}
                 paletteId={id}
-                showMore={true} />
+                isFullPalette={true} />
         ))
         return (
             <div className="Palette">
