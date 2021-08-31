@@ -20,6 +20,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { ChromePicker } from 'react-color'
+import DraggableColorBox from './DraggableColorBox';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 
 const drawerWidth = 400;
 
@@ -70,6 +72,7 @@ const styles = theme => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
         marginLeft: -drawerWidth,
+        height: '100vh',
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -86,10 +89,25 @@ class NewPaletteForm extends React.Component {
         this.state = {
             open: true,
             currentColor: '#4AAAAA',
-            colors: ['purple', 'pink', 'blue']
+            colors: [],
+            newName: ''
         }
         this.handleColorChange = this.handleColorChange.bind(this)
         this.addNewColor = this.addNewColor.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+    componentDidMount() {
+        ValidatorForm.addValidationRule('isColorNameUnique', (value) => (
+            this.state.colors.every(
+                ({ name }) => name.toLowerCase() !== value.toLowerCase()
+            )
+        ))
+        ValidatorForm.addValidationRule('isColorUnique', (value) => (
+            this.state.colors.every(
+                ({ color }) => color !== this.state.currentColor
+            )
+        ))
     }
 
     handleDrawerOpen = () => {
@@ -104,8 +122,16 @@ class NewPaletteForm extends React.Component {
         this.setState({ currentColor: color.hex })
     }
 
+    handleChange(evt) {
+        this.setState({ newName: evt.target.value })
+    }
+
     addNewColor() {
-        this.setState({ colors: [...this.state.colors, this.state.currentColor] })
+        const newColor = {
+            color: this.state.currentColor,
+            name: this.state.newName
+        }
+        this.setState({ colors: [...this.state.colors, newColor], newName: '' })
     }
 
     render() {
@@ -160,11 +186,24 @@ class NewPaletteForm extends React.Component {
                         </Button>
                     </div>
                     <ChromePicker onChangeComplete={(newColor) => this.handleColorChange(newColor)} color={this.state.currentColor} />
-                    <Button
-                        style={{ background: this.state.currentColor }} variant="contained"
-                        onClick={this.addNewColor}>
-                        Add Color
-                    </Button>
+                    <ValidatorForm onSubmit={this.addNewColor}>
+                        <TextValidator
+                            value={this.state.newName}
+                            onChange={this.handleChange}
+                            validators={[
+                                'required', 
+                                'isColorNameUnique', 
+                                'isColorUnique']}
+                            errorMessages={[
+                                'enter color name', 
+                                'colorname already taken', 
+                                'color already added']} />
+                        <Button
+                            style={{ background: this.state.currentColor }} variant="contained"
+                            type="submit">
+                            Add Color
+                        </Button>
+                    </ValidatorForm>
                     <Divider />
                 </Drawer>
                 <main
@@ -173,11 +212,9 @@ class NewPaletteForm extends React.Component {
                     })}
                 >
                     <div className={classes.drawerHeader} />
-                    <ul>
-                        {this.state.colors.map(color => (
-                            <li style={{backgroundColor: color}}>{color}</li>
-                        ))}
-                    </ul>
+                    {this.state.colors.map(color => (
+                        <DraggableColorBox color={color.color} name={color.name} />
+                    ))}
                 </main>
             </div>
         );
