@@ -4,6 +4,7 @@ import { generatePalette } from './colorHelpers';
 import Palette from './Palette';
 import seedColors from './seedColors';
 import PaletteList from './PaletteList';
+import SingleColorPalette from './SingleColorPalette';
 
 function App() {
 
@@ -23,7 +24,18 @@ function App() {
         <Route
           exact
           path='/palette/:id'
-          render={(routeProps) => <Palette palette={generatePalette(findPalette(routeProps.match.params.id))} />} />
+          render={(routeProps) =>
+            <Palette
+              palette={generatePalette(
+                findPalette(routeProps.match.params.id))} />} />
+        <Route
+          exact
+          path='/palette/:paletteId/:colorId'
+          render={(routeProps) =>
+            <SingleColorPalette
+            colorId={routeProps.match.params.colorId}
+              palette={generatePalette(
+                findPalette(routeProps.match.params.paletteId))} />} />
       </Switch>
       {/* <Palette palette={generatePalette(seedColors[4])} /> */}
     </div>
