@@ -95,6 +95,7 @@ class NewPaletteForm extends React.Component {
         this.handleColorChange = this.handleColorChange.bind(this)
         this.addNewColor = this.addNewColor.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.savePalette = this.savePalette.bind(this)
     }
 
     componentDidMount() {
@@ -134,6 +135,17 @@ class NewPaletteForm extends React.Component {
         this.setState({ colors: [...this.state.colors, newColor], newName: '' })
     }
 
+    savePalette(){
+        let newName = 'new Test Palette'
+        const newPalette = {
+            paletteName: newName,
+            id: newName.toLowerCase().replace(' ', '-'),
+            colors: this.state.colors
+        }
+        this.props.savePalette(newPalette)
+        this.props.history.push('/')
+    }
+
     render() {
         const { classes, theme } = this.props;
         const { open } = this.state;
@@ -142,6 +154,7 @@ class NewPaletteForm extends React.Component {
             <div className={classes.root}>
                 <CssBaseline />
                 <AppBar
+                    color="default"
                     position="fixed"
                     className={classNames(classes.appBar, {
                         [classes.appBarShift]: open,
@@ -159,6 +172,7 @@ class NewPaletteForm extends React.Component {
                         <Typography variant="h6" color="inherit" noWrap>
                             Persistent drawer
                         </Typography>
+                        <Button variant="contained" color="primary" onClick={this.savePalette}>Save Palette</Button>
                     </Toolbar>
                 </AppBar>
                 <Drawer
@@ -191,12 +205,12 @@ class NewPaletteForm extends React.Component {
                             value={this.state.newName}
                             onChange={this.handleChange}
                             validators={[
-                                'required', 
-                                'isColorNameUnique', 
+                                'required',
+                                'isColorNameUnique',
                                 'isColorUnique']}
                             errorMessages={[
-                                'enter color name', 
-                                'colorname already taken', 
+                                'enter color name',
+                                'colorname already taken',
                                 'color already added']} />
                         <Button
                             style={{ background: this.state.currentColor }} variant="contained"
