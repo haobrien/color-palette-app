@@ -1,10 +1,33 @@
 .DraggableColorBox {
     width: 20%;
-    height: 20%;
+    height: 25%;
     margin: 0 auto;
     display: inline-block;
     position: relative;
     cursor: pointer;
     margin-bottom: -5px;
-    box-sizing: border-box;
+}
+
+.DraggableColorBox .box-content {
+    position: absolute;
+    width: 100%;
+    padding: 10px;
+    left: 0;
+    bottom: 0;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.DraggableColorBox .delete-icon {
+    color: #333;
+    transition: all 0.2s ease-in-out;
+}
+
+.DraggableColorBox:hover .delete-icon {
+    color: whitesmoke;
+    transform: scale(1.5);
 }

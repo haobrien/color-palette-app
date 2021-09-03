@@ -3,22 +3,16 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import { Button, colors } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import { ChromePicker } from 'react-color'
 import DraggableColorBox from './DraggableColorBox';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
@@ -90,7 +84,8 @@ class NewPaletteForm extends React.Component {
             open: true,
             currentColor: '#4AAAAA',
             colors: [],
-            newName: ''
+            newColorName: '',
+            newPaletteName: ''
         }
         this.handleColorChange = this.handleColorChange.bind(this)
         this.addNewColor = this.addNewColor.bind(this)
@@ -109,6 +104,11 @@ class NewPaletteForm extends React.Component {
                 ({ color }) => color !== this.state.currentColor
             )
         ))
+        ValidatorForm.addValidationRule('isPaletteUnique', (value) => (
+            this.props.palettes.every(
+                ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
+            )
+        ))
     }
 
     handleDrawerOpen = () => {
@@ -124,26 +124,32 @@ class NewPaletteForm extends React.Component {
     }
 
     handleChange(evt) {
-        this.setState({ newName: evt.target.value })
+        this.setState({ [evt.target.name]: evt.target.value })
     }
 
     addNewColor() {
         const newColor = {
             color: this.state.currentColor,
-            name: this.state.newName
+            name: this.state.newColorName
         }
-        this.setState({ colors: [...this.state.colors, newColor], newName: '' })
+        this.setState({ colors: [...this.state.colors, newColor], newColorName: '' })
     }
 
-    savePalette(){
-        let newName = 'new Test Palette'
+    savePalette() {
+        let newColorName = this.state.newPaletteName
         const newPalette = {
-            paletteName: newName,
-            id: newName.toLowerCase().replace(' ', '-'),
+            paletteName: newColorName,
+            id: newColorName.toLowerCase().replace(' ', '-'),
             colors: this.state.colors
         }
         this.props.savePalette(newPalette)
         this.props.history.push('/')
+    }
+
+    removeColor(colorName) {
+        this.setState({
+            colors: this.state.colors.filter(color => color.name !== colorName)
+        })
     }
 
     render() {
@@ -170,9 +176,29 @@ class NewPaletteForm extends React.Component {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" color="inherit" noWrap>
-                            Persistent drawer
+                            Create New Palette
                         </Typography>
-                        <Button variant="contained" color="primary" onClick={this.savePalette}>Save Palette</Button>
+                        <Button variant="contained" color="secondary">
+                            Go Back
+                        </Button>
+                        <ValidatorForm onSubmit={this.savePalette}>
+                            <TextValidator
+                                value={this.state.newPaletteName}
+                                name="newPaletteName"
+                                label="Palette Name"
+                                onChange={this.handleChange}
+                                validators={[
+                                    'required',
+                                    'isPaletteUnique'
+                                ]}
+                                errorMessages={[
+                                    'palette name required',
+                                    'palette name already taken'
+                                ]} />
+                            <Button variant="contained" color="primary" type="submit">
+                                Save Palette
+                            </Button>
+                        </ValidatorForm>
                     </Toolbar>
                 </AppBar>
                 <Drawer
@@ -202,7 +228,8 @@ class NewPaletteForm extends React.Component {
                     <ChromePicker onChangeComplete={(newColor) => this.handleColorChange(newColor)} color={this.state.currentColor} />
                     <ValidatorForm onSubmit={this.addNewColor}>
                         <TextValidator
-                            value={this.state.newName}
+                            value={this.state.newColorName}
+                            name="newColorName"
                             onChange={this.handleChange}
                             validators={[
                                 'required',
@@ -227,7 +254,7 @@ class NewPaletteForm extends React.Component {
                 >
                     <div className={classes.drawerHeader} />
                     {this.state.colors.map(color => (
-                        <DraggableColorBox color={color.color} name={color.name} />
+                        <DraggableColorBox removeColor={() => this.removeColor(color.name)} key={color.name} color={color.color} name={color.name} />
                     ))}
                 </main>
             </div>
