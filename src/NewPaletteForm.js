@@ -11,35 +11,14 @@ import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ColorPickerForm from './ColorPickerForm';
-import { ChromePicker } from 'react-color'
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 import DraggableColorList from './DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc';
-import { color } from '@material-ui/system';
 
 const drawerWidth = 400;
 
 const styles = theme => ({
     root: {
         display: 'flex',
-    },
-    appBar: {
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-    },
-    appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    menuButton: {
-        marginLeft: 12,
-        marginRight: 20,
     },
     hide: {
         display: 'none',
@@ -48,8 +27,29 @@ const styles = theme => ({
         width: drawerWidth,
         flexShrink: 0,
     },
+    drawerContent: {
+        width: '90%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: '0 auto'
+    },
+    buttons: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        '& button' : {
+            width: '49%'
+        }
+    },
     drawerPaper: {
         width: drawerWidth,
+        display:'flex',
+        alignItems: 'center'
     },
     drawerHeader: {
         display: 'flex',
@@ -155,7 +155,6 @@ class NewPaletteForm extends React.Component {
             <div className={classes.root}>
                 <PaletteFormNav
                     open={open}
-                    classes={classes}
                     palettes={palettes}
                     savePalette={this.savePalette}
                     handleDrawerOpen={this.handleDrawerOpen} />
@@ -174,20 +173,23 @@ class NewPaletteForm extends React.Component {
                         </IconButton>
                     </div>
                     < Divider />
-                    <Typography variant="h4">Design Your Color</Typography>
-                    <div>
-                        <Button variant="contained" color='secondary' onClick={this.clearColors}>
-                            Clear Palette
-                        </Button>
-                        <Button variant="contained" color='primary' onClick={this.addRandomColor} disabled={isPaletteFull}>
-                            Random Color
-                        </Button>
-                    </div>
+                    <div className={classes.drawerContent}>
 
-                    <ColorPickerForm
-                        isPaletteFull={isPaletteFull}
-                        colors={colors}
-                        addNewColor={this.addNewColor} />
+                        <Typography variant="h4" gutterBottom>Design Your Color</Typography>
+                        <div className={classes.buttons}>
+                            <Button variant="contained" color='secondary' onClick={this.clearColors}>
+                                Clear Palette
+                            </Button>
+                            <Button variant="contained" color='primary' onClick={this.addRandomColor} disabled={isPaletteFull}>
+                                Random Color
+                            </Button>
+                        </div>
+
+                        <ColorPickerForm
+                            isPaletteFull={isPaletteFull}
+                            colors={colors}
+                            addNewColor={this.addNewColor} />
+                    </div>
 
                 </Drawer>
                 <main
