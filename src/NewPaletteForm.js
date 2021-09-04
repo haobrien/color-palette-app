@@ -197,7 +197,7 @@ class NewPaletteForm extends React.Component {
                         [classes.contentShift]: open,
                     })}
                 >
-                    <div className={classes.drawerHeader} />
+                    {/* <div className={classes.drawerHeader} /> */}
                     <DraggableColorList
                         colors={colors}
                         removeColor={this.removeColor}
