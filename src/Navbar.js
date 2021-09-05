@@ -6,13 +6,28 @@ import { IconButton, MenuItem } from '@material-ui/core'
 import { Snackbar } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import DeleteIcon from '@material-ui/icons/Delete'
+import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import PersonIcon from '@material-ui/icons/Person';
+import AddIcon from '@material-ui/icons/Add';
+import Typography from '@material-ui/core/Typography';
+import blue from '@material-ui/core/colors/blue';
+import red from '@material-ui/core/colors/red';
+import CheckIcon from '@material-ui/icons/Check';
+import Cancel from '@material-ui/icons/Cancel'
 import './styles/Navbar.css'
 import { mergeClasses } from '@material-ui/styles'
 
 export default class Navbar extends Component {
     constructor(props) {
         super(props)
-        this.state = { format: 'hex', open: false }
+        this.state = { format: 'hex', open: false, deleteDialogOpen: false }
         this.handleFormatChange = this.handleFormatChange.bind(this)
         this.closeSnackbar = this.closeSnackbar.bind(this)
     }
@@ -27,9 +42,17 @@ export default class Navbar extends Component {
         this.setState({ open: false })
     }
 
+    openDialog = () => {
+        this.setState({ deleteDialogOpen: true })
+    }
+
+    closeDialog = () => {
+        this.setState({ deleteDialogOpen: false })
+    }
+
     render() {
         const { level, changeLevel, showSlider, deletePalette } = this.props
-        const { format } = this.state
+        const { format, deleteDialogOpen } = this.state
         return (
             <header className="Navbar">
                 <div className="logo">
@@ -57,7 +80,7 @@ export default class Navbar extends Component {
                         </Select>
                     </div>
                     <div className="delete">
-                        <DeleteIcon onClick={deletePalette}/>
+                        <DeleteIcon onClick={this.openDialog} />
                     </div>
                 </div>
                 <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
@@ -74,6 +97,28 @@ export default class Navbar extends Component {
                         </IconButton>
                     ]}
                 />
+                <Dialog open={deleteDialogOpen} aria-labeledby="delete-dialog-title" onClose={this.closeDialog}>
+                    <DialogTitle id="delete-dialog-title">Delete palette?</DialogTitle>
+                    <List>
+
+                        <ListItem button onClick={deletePalette} >
+                            <ListItemAvatar>
+                                <Avatar style={{ backgroundColor: blue[100], color: blue[600] }}>
+                                    <CheckIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary="Delete" />
+                        </ListItem>
+                        <ListItem button onClick={this.closeDialog} >
+                            <ListItemAvatar>
+                                <Avatar style={{ backgroundColor: red[100], color: red[600] }}>
+                                    <CloseIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary="Cancel" />
+                        </ListItem>
+                    </List>
+                </Dialog>
             </header>
         )
     }

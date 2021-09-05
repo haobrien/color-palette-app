@@ -23,6 +23,7 @@ const styles = {
         display: 'flex',
         color: 'white',
         alignItems: 'center',
+        margin: '2rem 0 0.5rem',
         '& a': {
             textDecoration: 'none',
             color: 'white',
@@ -31,6 +32,10 @@ const styles = {
             '& svg' : {
                 marginRight: '0.5rem'
             }
+        },
+        '& h1':{
+            backgroundColor: '#313131',
+
         }
     },
     palettes: {
