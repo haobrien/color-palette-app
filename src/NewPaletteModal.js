@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -26,14 +25,6 @@ export default class NewPaletteModal extends Component {
 
     }
 
-    // handleClickOpen = () => {
-    //     this.setState({ open: true });
-    // }
-
-    // handleClose = () => {
-    //     this.setState({ open: false });
-    // }
-
     handleChange = (evt) => {
         this.setState({ [evt.target.name]: evt.target.value })
     }
@@ -56,7 +47,8 @@ export default class NewPaletteModal extends Component {
         return (
             <div>
                 <Dialog open={this.state.stage === 'emoji'}>
-                    <Picker onSelect={this.savePalette} />
+                    <DialogTitle id="form-dialog-title">Pick an Emoji</DialogTitle>
+                    <Picker onSelect={this.savePalette} title="Pick an Emoji" />
                 </Dialog>
                 <Dialog
                     open={this.state.stage === 'form'}
