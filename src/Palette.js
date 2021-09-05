@@ -14,6 +14,7 @@ export default class Palette extends Component {
         }
         this.changeLevel = this.changeLevel.bind(this)
         this.changeFormat = this.changeFormat.bind(this)
+        this.deletePalette = this.deletePalette.bind(this)
     }
 
     changeLevel(level) {
@@ -22,6 +23,11 @@ export default class Palette extends Component {
 
     changeFormat(format) {
         this.setState({ format })
+    }
+
+    deletePalette(){
+        this.props.deletePalette(this.props.palette.id)
+        this.props.history.push('/')
     }
 
     render() {
@@ -43,6 +49,7 @@ export default class Palette extends Component {
                     changeLevel={this.changeLevel}
                     level={level}
                     changeFormat={this.changeFormat} 
+                    deletePalette={this.deletePalette}
                     showSlider={true}/>
                 <div className="Palette-colors">
                     {colorBoxes}

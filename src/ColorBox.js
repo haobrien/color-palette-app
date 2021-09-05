@@ -4,18 +4,7 @@ import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/styles'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import './styles/ColorBox.css'
-
-const styles = {
-    checkLuminance: {
-        color: props =>
-            chroma(props.background).luminance() >= 0.3 ? '#333' : '#eee'
-    },
-    colorboxPropStyles: {
-        height: props =>
-            props.isFullPalette ? '25%' : '50%',
-        background: props => props.background
-    }
-}
+import styles from './styles/ColorBoxStyles'
 
 class ColorBox extends Component {
     constructor(props) {

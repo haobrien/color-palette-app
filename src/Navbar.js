@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom'
 import { IconButton, MenuItem } from '@material-ui/core'
 import { Snackbar } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
+import DeleteIcon from '@material-ui/icons/Delete'
 import './styles/Navbar.css'
+import { mergeClasses } from '@material-ui/styles'
 
 export default class Navbar extends Component {
     constructor(props) {
@@ -26,7 +28,7 @@ export default class Navbar extends Component {
     }
 
     render() {
-        const { level, changeLevel, showSlider } = this.props
+        const { level, changeLevel, showSlider, deletePalette } = this.props
         const { format } = this.state
         return (
             <header className="Navbar">
@@ -46,12 +48,17 @@ export default class Navbar extends Component {
                         </div>
                     </div>
                 )}
-                <div className="select-container">
-                    <Select value={format} onChange={this.handleFormatChange}>
-                        <MenuItem value="hex">Hex - #ffffff</MenuItem>
-                        <MenuItem value="rgb">rgb - rgb 255, 255, 255</MenuItem>
-                        <MenuItem value="rgba">rgba - rgba 255, 255, 255, 1</MenuItem>
-                    </Select>
+                <div className="right-menu">
+                    <div className="select-container">
+                        <Select value={format} onChange={this.handleFormatChange}>
+                            <MenuItem value="hex">Hex - #ffffff</MenuItem>
+                            <MenuItem value="rgb">rgb - rgb 255, 255, 255</MenuItem>
+                            <MenuItem value="rgba">rgba - rgba 255, 255, 255, 1</MenuItem>
+                        </Select>
+                    </div>
+                    <div className="delete">
+                        <DeleteIcon onClick={deletePalette}/>
+                    </div>
                 </div>
                 <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
                     open={this.state.open}
