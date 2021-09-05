@@ -5,7 +5,7 @@
     display: inline-block;
     position: relative;
     cursor: pointer;
-    margin-bottom: -5px;
+    margin-bottom: -6px;
 }
 
 .DraggableColorBox .box-content {
@@ -30,4 +30,24 @@
 .DraggableColorBox:hover .delete-icon {
     color: whitesmoke;
     transform: scale(1.5);
+}
+
+/* medium screens */
+
+@media screen and (max-width: 992px) {
+    .DraggableColorBox {
+        width: 50%;
+        height: 10%;
+        margin-bottom: -6px;
+    }
+}
+
+/* small screens */
+
+@media screen and (max-width: 576px) {
+    .DraggableColorBox {
+        width: 100%;
+        height: 5%;
+        margin-bottom: -6px;
+    }
 }

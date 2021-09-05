@@ -11,7 +11,7 @@ const styles = {
         }
     },
     colors: {
-        backgroundColor: 'gray',
+        backgroundColor: '#f2f2f2',
         height: '150px',
         width: '100%',
         borderRadius: '5px',
@@ -23,7 +23,7 @@ const styles = {
         display: 'inline-block',
         margin: '0 auto',
         position: 'relative',
-        marginBottom: '-4px'
+        marginBottom: '-6px'
     },
     title: {
         display: 'flex',

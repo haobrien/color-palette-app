@@ -1,4 +1,4 @@
-const drawerWidth = 400;
+import { DRAWER_WIDTH } from "../constants";
 
 const styles = theme => ({
     root: {
@@ -17,8 +17,8 @@ const styles = theme => ({
         alignItems: 'center'
     },
     appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
+        width: `calc(100% - ${DRAWER_WIDTH}px)`,
+        marginLeft: DRAWER_WIDTH,
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
@@ -36,7 +36,30 @@ const styles = theme => ({
         '& a': {
             textDecoration: 'none'
         }
+    },
+    [`@media (max-width: 992px)`]: {
+
+    },
+    [`@media (max-width: 576px)`]: {
+        root: {
+            '& h6:after': {
+                fontSize: '1rem',
+            }
+        },
+        navButtons: {
+            marginRight: '0.2rem',
+            '& button': {
+                margin: '0 0.3rem',
+                padding: '5px',
+                fontSize: '0.8rem'
+            },
+        },
+        menuButton: {
+            marginLeft: 6,
+            marginRight: 0,
+        },
     }
+
 })
 
 export default styles
