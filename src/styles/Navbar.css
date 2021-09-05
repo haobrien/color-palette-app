@@ -2,6 +2,7 @@
 .Navbar {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 6vh;
 }
 
@@ -46,7 +47,33 @@
 }
 
 .Navbar .select-container {
-    margin-left: auto;
-    margin-right: 1rem;
+    margin-right: 1.5rem;
 }
 
+.delete {
+    margin-left: auto;
+    padding: 0 1.2rem;
+    font-size: 22px;
+    background-color: #eb3d30;
+    color: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.delete svg{
+    transition: all 0.2s ease-in-out;
+    opacity: 0.5;
+}
+
+.delete:hover svg{
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+.right-menu{
+    display:flex;
+    height: 100%;
+    align-items: center;
+}

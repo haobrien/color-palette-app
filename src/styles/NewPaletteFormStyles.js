@@ -37,6 +37,7 @@ const styles = theme => ({
     },
     drawerHeader: {
         display: 'flex',
+        width: '100%',
         alignItems: 'center',
         padding: '0 8px',
         ...theme.mixins.toolbar,
@@ -44,13 +45,13 @@ const styles = theme => ({
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing(3),
+        padding: 0,
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
         marginLeft: -drawerWidth,
-        height: '100vh',
+        height: 'calc(100vh - 64px)',
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
