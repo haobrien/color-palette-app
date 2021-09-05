@@ -42,13 +42,13 @@ const styles = theme => ({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        '& button' : {
+        '& button': {
             width: '49%'
         }
     },
     drawerPaper: {
         width: drawerWidth,
-        display:'flex',
+        display: 'flex',
         alignItems: 'center'
     },
     drawerHeader: {
@@ -112,11 +112,13 @@ class NewPaletteForm extends React.Component {
         this.setState({ colors: [...this.state.colors, newColor], newColorName: '' })
     }
 
-    savePalette(newPaletteName) {
+    savePalette(newPaletteInfo) {
+        const { paletteName, emoji } = newPaletteInfo
         const newPalette = {
-            paletteName: newPaletteName,
-            id: newPaletteName.toLowerCase().replace(' ', '-'),
-            colors: this.state.colors
+            paletteName: paletteName,
+            id: paletteName.toLowerCase().replace(' ', '-'),
+            colors: this.state.colors,
+            emoji: emoji
         }
         this.props.savePalette(newPalette)
         this.props.history.push('/')
