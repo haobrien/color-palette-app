@@ -89,7 +89,7 @@ class NewPaletteForm extends React.Component {
 
     render() {
         const { classes, theme, maxColors, palettes } = this.props;
-        const { open, colors, currentColor, newColorName } = this.state;
+        const { open, colors } = this.state;
         const isPaletteFull = colors.length >= maxColors
 
         return (
@@ -143,7 +143,8 @@ class NewPaletteForm extends React.Component {
                         colors={colors}
                         removeColor={this.removeColor}
                         axis='xy'
-                        onSortEnd={this.onSortEnd} />
+                        onSortEnd={this.onSortEnd}
+                        distance={20} />
                 </main>
             </div>
         );

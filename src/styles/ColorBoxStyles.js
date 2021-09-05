@@ -1,4 +1,3 @@
-import { XS, SM, MD, LG } from '../constants'
 import chroma from 'chroma-js'
 const styles = {
     checkLuminance: {

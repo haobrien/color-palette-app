@@ -6,7 +6,6 @@ import { IconButton, MenuItem } from '@material-ui/core'
 import { Snackbar } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import DeleteIcon from '@material-ui/icons/Delete'
-import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -14,15 +13,10 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import PersonIcon from '@material-ui/icons/Person';
-import AddIcon from '@material-ui/icons/Add';
-import Typography from '@material-ui/core/Typography';
 import blue from '@material-ui/core/colors/blue';
 import red from '@material-ui/core/colors/red';
 import CheckIcon from '@material-ui/icons/Check';
-import Cancel from '@material-ui/icons/Cancel'
 import './styles/Navbar.css'
-import { mergeClasses } from '@material-ui/styles'
 
 export default class Navbar extends Component {
     constructor(props) {
@@ -97,10 +91,9 @@ export default class Navbar extends Component {
                         </IconButton>
                     ]}
                 />
-                <Dialog open={deleteDialogOpen} aria-labeledby="delete-dialog-title" onClose={this.closeDialog}>
+                <Dialog open={deleteDialogOpen} aria-labelledby="delete-dialog-title" onClose={this.closeDialog}>
                     <DialogTitle id="delete-dialog-title">Delete palette?</DialogTitle>
                     <List>
-
                         <ListItem button onClick={deletePalette} >
                             <ListItemAvatar>
                                 <Avatar style={{ backgroundColor: blue[100], color: blue[600] }}>
