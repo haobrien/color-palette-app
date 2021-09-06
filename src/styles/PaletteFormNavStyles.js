@@ -37,9 +37,6 @@ const styles = theme => ({
             textDecoration: 'none'
         }
     },
-    [`@media (max-width: 992px)`]: {
-
-    },
     [`@media (max-width: 576px)`]: {
         root: {
             '& h6:after': {
@@ -59,7 +56,6 @@ const styles = theme => ({
             marginRight: 0,
         },
     }
-
 })
 
 export default styles

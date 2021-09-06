@@ -10,7 +10,7 @@ export default class Palette extends Component {
         super(props)
         this.state = {
             level: 500,
-            format: 'hex'
+            format: 'hex',
         }
         this.changeLevel = this.changeLevel.bind(this)
         this.changeFormat = this.changeFormat.bind(this)
@@ -25,7 +25,7 @@ export default class Palette extends Component {
         this.setState({ format })
     }
 
-    deletePalette(){
+    deletePalette() {
         this.props.deletePalette(this.props.palette.id)
         this.props.history.push('/')
     }
@@ -48,13 +48,13 @@ export default class Palette extends Component {
                 <Navbar
                     changeLevel={this.changeLevel}
                     level={level}
-                    changeFormat={this.changeFormat} 
+                    changeFormat={this.changeFormat}
                     deletePalette={this.deletePalette}
-                    showSlider={true}/>
+                    showSlider={true} />
                 <div className="Palette-colors">
                     {colorBoxes}
                 </div>
-                <Footer paletteName={paletteName} emoji={emoji}/>
+                <Footer paletteName={paletteName} emoji={emoji} />
             </div>
         )
     }
