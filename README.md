@@ -1,6 +1,28 @@
-# Getting Started with Create React App
+# Color Palette App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+My final project from [Colt Steele's Modern React Bootcamp](https://www.udemy.com/course/modern-react-bootcamp/), with some customizations. Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+## Navigate Palettes
+
+Choose from different color palettes and change luminosity within the palette. Choose your color format from HEX, RGB, and RGBA, and click on a color to copy its code to clipboard. You can browse different shades of a color by clicking MORE.
+
+![demo of color palette app](demo/color-palette-palettes.gif)
+
+
+## Create Custom Palettes
+
+Create your own custom color palette. Choose RANDOM COLOR to add a random color to your palette, or use the color picker to make your own custom shade. Drag and drop to order your colors. Add a unique name and emoji to your new palette.
+
+![demo of palette creation](demo/color-palette-demo-newpalette.gif)
+
+
+## Created with Responsive Design
+
+Works on different screen sizes.
+
+![demo of responsive design](demo/color-palette-demo-responsive.gif)
+
 
 ## Available Scripts
 
@@ -28,43 +50,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
