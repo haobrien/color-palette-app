@@ -1,5 +1,3 @@
-# Color Palette App
-
 My final project from [Colt Steele's Modern React Bootcamp](https://www.udemy.com/course/modern-react-bootcamp/), with some customizations. Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
