@@ -73,8 +73,9 @@ class App extends Component {
                 colorId={routeProps.match.params.colorId}
                 palette={generatePalette(
                   this.findPalette(routeProps.match.params.paletteId))} />} />
+          <Route
+            render={(routeProps) => <PaletteList palettes={this.state.palettes} {...routeProps} />} />
         </Switch>
-        {/* <Palette palette={generatePalette(seedColors[4])} /> */}
       </div>
     )
   }
